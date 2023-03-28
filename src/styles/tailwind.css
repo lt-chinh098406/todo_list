@@ -1,0 +1,9 @@
+/* stylelint-disable scss/at-rule-no-unknown */
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .app-container {
+    @apply max-w-[1104px] m-auto pl-4 pr-4;
+  }
+}
