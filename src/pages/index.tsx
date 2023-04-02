@@ -8,8 +8,8 @@ import { Todo } from '@/components/todo/Todo'
 
 const Container = styled.div`
   max-width: calc(100% - (var(--sidebar)));
-  background-color: #f2f6fe;
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   flex: 1;

@@ -1,15 +1,45 @@
+import React, { useState } from 'react'
 import styled from 'styled-components'
+import { Button } from '@/components/Button'
+import { Modal } from '@/components/Modal'
 
 const HeaderWrapper = styled.div`
-  background-color: black;
+  background: #4d4d4d;
   min-height: var(--header);
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
 `
 
-export const Header = () => {
+export const Header: React.FC = () => {
+  const [isLogin, setIsLogin] = useState<boolean>(false)
+
+  const closeMapHandler = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    event.preventDefault()
+    setIsLogin(false)
+  }
+
   return (
     <HeaderWrapper>
-      <h3 className="tw-text-white">Header</h3>
+      <Modal
+        show={isLogin}
+        header="!2312312"
+        footer={<Button onClick={closeMapHandler}>CLOSE</Button>}
+      >
+        <div className="map-container">
+          <h2>The Map!</h2>
+        </div>
+      </Modal>
+      <h3 className="tw-text-white">Todo List</h3>
+      {isLogin ? (
+        <p>qweqweqwe</p>
+      ) : (
+        <Button onClick={() => setIsLogin(true)}>Login</Button>
+      )}
     </HeaderWrapper>
   )
 }

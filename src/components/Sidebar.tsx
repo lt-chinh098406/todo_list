@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 
 const SideBarWrapper = styled.div`
-  background-color: #1e0059;
+  background-color: #4d1894;
+  color: White;
   min-width: var(--sidebar);
 `
 

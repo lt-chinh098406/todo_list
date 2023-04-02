@@ -1,14 +1,15 @@
 import styled from 'styled-components'
 import { TodoColumn } from '@/components/todo/TodoColumn'
 import TodoColumnModel from '@/models/TodoColumn'
+import { Button } from '@/components/Button'
 
 const TodoWrapper = styled.div`
-  height: 100%;
-  background-color: white;
-  border-radius: 50px;
+  min-height: 100%;
+  background-color: #dfe6f5;
+  flex: 1;
 `
 
-const columns: TodoColumnModel[] = [
+export const columns: TodoColumnModel[] = [
   {
     value: 1,
     label: 'New',
@@ -30,11 +31,9 @@ const columns: TodoColumnModel[] = [
 export const Todo = () => {
   return (
     <TodoWrapper>
-      <div className="tw-flex tw-justify-between tw-mb-6">
+      <div className="tw-flex tw-justify-between tw-m-4">
         <h1>Todo List</h1>
-        <button className="tw-bg-[#754BE5] tw-rounded-full tw-w-[120px] tw-text-white">
-          Add todo
-        </button>
+        <Button>Add todo</Button>
       </div>
       <TodoColumn columns={columns} />
     </TodoWrapper>
