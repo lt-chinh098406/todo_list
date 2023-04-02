@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { FieldProps } from 'formik'
 
 const InputElement = styled.input`
   display: block;
@@ -17,36 +18,29 @@ const InputElement = styled.input`
 `
 
 interface InputProps {
-  id: string
   label?: string
   type: string
   placeholder: string
-  value?: string
-  changeHandler?: () => void
-  touchHandler?: () => void
 }
 
-export const Input: React.FC<InputProps> = ({
-  id,
-  label,
+export const Input: React.FC<InputProps & FieldProps> = ({
+  field,
   type,
+  label,
   placeholder,
-  value,
-  changeHandler,
-  touchHandler,
 }) => {
+  const { name } = field
+
   return (
     <div className="tw-m-2 tw-flex tw-items-center tw-h-[60px]">
-      <label htmlFor={id} className="tw-min-w-[120px] tw-font-bold">
+      <label htmlFor={name} className="tw-min-w-[120px] tw-font-bold">
         {label}
       </label>
       <InputElement
-        id={id}
+        id={name}
+        {...field}
         type={type}
         placeholder={placeholder}
-        onChange={changeHandler}
-        value={value}
-        onBlur={touchHandler}
       />
     </div>
   )

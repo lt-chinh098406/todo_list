@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { FieldProps } from 'formik'
 
 const TextareaElement = styled.textarea`
   display: block;
@@ -16,36 +17,27 @@ const TextareaElement = styled.textarea`
 `
 
 interface TextAreaProps {
-  id: string
-  label: string
+  label?: string
   placeholder: string
-  rows?: number
-  value?: string
-  changeHandler?: () => void
-  touchHandler?: () => void
 }
 
-export const TextArea: React.FC<TextAreaProps> = ({
-  id,
+export const TextArea: React.FC<TextAreaProps & FieldProps> = ({
+  field,
   label,
   placeholder,
-  rows,
-  value,
-  changeHandler,
-  touchHandler,
 }) => {
+  const { name } = field
+
   return (
     <div className="tw-m-2 tw-flex tw-items-start">
-      <label htmlFor={id} className="tw-min-w-[120px] tw-font-bold tw-mt-3">
+      <label htmlFor={name} className="tw-min-w-[120px] tw-font-bold tw-mt-3">
         {label}
       </label>
       <TextareaElement
-        id={id}
-        rows={rows || 5}
+        rows={5}
+        id={name}
+        {...field}
         placeholder={placeholder}
-        onChange={changeHandler}
-        value={value}
-        onBlur={touchHandler}
       />
     </div>
   )

@@ -1,48 +1,51 @@
-import styled from 'styled-components'
-
-const SelectElement = styled.select`
-  display: block;
-  flex: 1;
-  height: 40px;
-  font: inherit;
-  border: 1px solid #ccc;
-  background: #f8f8f8;
-  padding: 8px 12px;
-
-  &:focus {
-    outline: none;
-    background: #ebebeb;
-    border-color: #510077;
-  }
-`
-
+import TodoColumnModel from '@/models/TodoColumn'
+import { FieldProps } from 'formik'
+import Select from 'react-select'
 interface SelectProps {
-  id: string
   label: string
-  defaultValue: number
-  options: any
+  options: TodoColumnModel[]
 }
 
-export const Select: React.FC<SelectProps> = ({
-  id,
-  label,
-  defaultValue,
+export const SelectField: React.FC<SelectProps & FieldProps> = ({
+  field,
   options,
+  label,
 }) => {
+  const { name, value } = field
+  const selectedOption: TodoColumnModel = options.find(
+    (option) => option.value === value
+  ) || {
+    value: 1,
+    label: 'New',
+  }
+
+  const handleSelectedOptionChange = (
+    selectedOption: TodoColumnModel | null
+  ): void => {
+    const selectedValue = selectedOption ? selectedOption.value : selectedOption
+
+    const changeEvent = {
+      target: {
+        name: name,
+        value: selectedValue,
+      },
+    }
+    field.onChange(changeEvent)
+  }
+
   return (
     <div className="tw-m-2 tw-flex tw-items-center tw-h-[60px]">
-      <label htmlFor={id} className="tw-min-w-[120px] tw-font-bold">
+      <label htmlFor={name} className="tw-min-w-[120px] tw-font-bold">
         {label}
       </label>
-      <SelectElement value={defaultValue}>
-        {options.map((option: any) => {
-          return (
-            <option value={option.label} key={option.value}>
-              {option.label}
-            </option>
-          )
-        })}
-      </SelectElement>
+      <Select
+        className="tw-w-full"
+        id={name}
+        {...field}
+        value={selectedOption}
+        onChange={handleSelectedOptionChange}
+        options={options}
+      />
     </div>
   )
 }

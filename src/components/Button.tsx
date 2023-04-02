@@ -30,8 +30,17 @@ const ButtonWrapper = styled.button`
 interface TheButtonProps {
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
   children: React.ReactNode
+  type?: 'button' | 'submit'
 }
 
-export const Button: React.FC<TheButtonProps> = ({ children, onClick }) => {
-  return <ButtonWrapper onClick={onClick}>{children}</ButtonWrapper>
+export const Button: React.FC<TheButtonProps> = ({
+  children,
+  onClick,
+  type,
+}) => {
+  return (
+    <ButtonWrapper type={type || 'button'} onClick={onClick}>
+      {children}
+    </ButtonWrapper>
+  )
 }

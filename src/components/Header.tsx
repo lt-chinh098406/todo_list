@@ -25,11 +25,7 @@ export const Header: React.FC = () => {
 
   return (
     <HeaderWrapper>
-      <Modal
-        show={isLogin}
-        header="!2312312"
-        footer={<Button onClick={closeMapHandler}>CLOSE</Button>}
-      >
+      <Modal show={isLogin} header="!2312312">
         <div className="map-container">
           <h2>The Map!</h2>
         </div>

@@ -1,8 +1,13 @@
+interface Property {
+  id: string
+  value: string
+}
+
 export interface Todo {
-  id: string | number
+  id: string
   title: string
   description: string
-  properties: string[]
+  properties: Property[]
   statusId: number
-  creator: string
+  // creator: string
 }

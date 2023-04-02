@@ -19,8 +19,6 @@ const ModalWrapper = styled.div`
 interface ModalProps {
   children?: ReactNode
   header?: string
-  footer?: ReactNode
-  onSubmit?: () => void
   onClick?: () => void
   onClose?: (event: React.MouseEvent<HTMLOrSVGElement, MouseEvent>) => void
   show?: boolean
@@ -28,13 +26,7 @@ interface ModalProps {
 
 interface ModalOverlayProps extends Omit<ModalProps, 'show' | 'onClick'> {}
 
-const ModalOverlay = ({
-  header,
-  onSubmit,
-  children,
-  onClose,
-  footer,
-}: ModalOverlayProps) => {
+const ModalOverlay = ({ header, children, onClose }: ModalOverlayProps) => {
   const content = (
     <ModalWrapper>
       <div className="tw-flex tw-justify-end tw-m-4">
@@ -46,10 +38,7 @@ const ModalOverlay = ({
       <header className="tw-w-full tw-p-4">
         <h2 className="tw-p-2 tw-text-center">{header}</h2>
       </header>
-      <form onSubmit={onSubmit ? onSubmit : (event) => event.preventDefault}>
-        <div className="tw-p-4">{children}</div>
-        <footer className="tw-p-4">{footer}</footer>
-      </form>
+      <div className="tw-p-4">{children}</div>
     </ModalWrapper>
   )
 
