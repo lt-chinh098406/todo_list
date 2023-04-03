@@ -1,5 +1,4 @@
-interface Property {
-  id: string
+export interface Property {
   value: string
 }
 

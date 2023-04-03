@@ -7,8 +7,8 @@ import { XMarkIcon } from '@heroicons/react/24/solid'
 
 const ModalWrapper = styled.div`
   z-index: 100;
-  position: fixed;
-  top: 14vh;
+  position: absolute;
+  top: 16vh;
   left: 30%;
   width: 40%;
   background: white;

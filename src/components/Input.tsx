@@ -32,7 +32,7 @@ export const Input: React.FC<InputProps & FieldProps> = ({
   const { name } = field
 
   return (
-    <div className="tw-m-2 tw-flex tw-items-center tw-h-[60px]">
+    <div className="tw-m-2 tw-flex tw-items-center tw-h-[60px] tw-flex-1">
       <label htmlFor={name} className="tw-min-w-[120px] tw-font-bold">
         {label}
       </label>

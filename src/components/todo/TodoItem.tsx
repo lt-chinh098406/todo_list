@@ -47,12 +47,7 @@ export const TodoItem: React.FC<TodoItemProps> = ({ todos }) => {
         </Card>
       ))}
 
-      <Modal
-        show={showPopup}
-        header="Todo"
-        onClose={closePopup}
-        footer={<Button onClick={closePopup}>CLOSE</Button>}
-      >
+      <Modal show={showPopup} header="Todo" onClose={closePopup}>
         <TodoForm />
       </Modal>
     </TodoItemWrapper>
