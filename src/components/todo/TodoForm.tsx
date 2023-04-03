@@ -1,7 +1,7 @@
 import { columns } from '@/components/todo/Todo'
 import { SelectField } from '@/components/Select'
 import { PlusCircleIcon, MinusCircleIcon } from '@heroicons/react/24/outline'
-import { FieldArray, FastField, Form, Formik } from 'formik'
+import { FieldArray, FastField, Form, Formik, FormikErrors } from 'formik'
 import { Button } from '@/components/Button'
 import { Todo, Property } from '@/models/Todo'
 import { Input } from '@/components/Input'
@@ -114,10 +114,18 @@ export const TodoForm: React.FC = ({}) => {
                             />
                           )}
                         </div>
-                        {errors.properties?.[index]?.value &&
-                          touched.properties?.[index]?.value && (
+                        {(errors?.properties as FormikErrors<Property>[])?.[
+                          index
+                        ]?.value &&
+                          (touched?.properties as FormikErrors<Property>[])?.[
+                            index
+                          ]?.value && (
                             <span className="tw-text-red-500 tw-ml-[130px]">
-                              {errors.properties[index].value}
+                              {
+                                (
+                                  errors?.properties as FormikErrors<Property>[]
+                                )[index].value
+                              }
                             </span>
                           )}
                       </div>

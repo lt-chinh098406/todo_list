@@ -1,0 +1,30 @@
+{
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.fixAll": true
+  },
+  "eslint.validate": ["javascript", "vue"],
+  "vetur.format.defaultFormatter.pug": "prettier",
+  "vetur.format.options.tabSize": 2,
+  "vetur.completion.autoImport": true,
+  "vetur.format.enable": true,
+  "vetur.grammar.customBlocks": {
+    "docs": "md",
+    "i18n": "json",
+    "router": "yaml"
+  },
+  "vetur.experimental.templateInterpolationService": false,
+  "files.insertFinalNewline": true,
+  "i18n-ally.keystyle": "nested",
+  "i18n-ally.localesPaths": ["locales"],
+  "i18n-ally.enabledFrameworks": ["vue"],
+  "i18n-ally.sourceLanguage": "ja",
+  "css.lint.unknownAtRules": "ignore",
+  "css.validate": false,
+  "scss.validate": false,
+  "stylelint.validate": ["css", "scss"],
+  "scss.lint.unknownAtRules": "ignore",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.tabSize": 2
+}

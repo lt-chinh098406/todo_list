@@ -1,0 +1,51 @@
+{
+  "Props String": {
+    "scope": "javascript,typescript",
+    "prefix": "prstr",
+    "body": [
+      "$1: {",
+      "  type: String,",
+      "  required: false,",
+      "  default: () => ''",
+      "}"
+    ]
+  },
+  "Props Boolean": {
+    "scope": "javascript,typescript",
+    "prefix": "prboo",
+    "body": ["$1: Boolean"]
+  },
+  "Props Array": {
+    "scope": "javascript,typescript",
+    "prefix": "prarr",
+    "body": [
+      "$1: {",
+      "  type: Array,",
+      "  required: false,",
+      "  default: () => []",
+      "}"
+    ]
+  },
+  "Props Object": {
+    "scope": "javascript,typescript",
+    "prefix": "probj",
+    "body": [
+      "$1: {",
+      "  type: Object,",
+      "  required: false,",
+      "  default: () => ({})",
+      "}"
+    ]
+  },
+  "Props Number": {
+    "scope": "javascript,typescript",
+    "prefix": "prnum",
+    "body": [
+      "$1: {",
+      "  type: Number,",
+      "  required: false,",
+      "  default: 0",
+      "}"
+    ]
+  }
+}
