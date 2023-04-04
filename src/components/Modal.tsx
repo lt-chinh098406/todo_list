@@ -20,7 +20,7 @@ interface ModalProps {
   children?: ReactNode
   header?: string
   onClick?: () => void
-  onClose?: (event: React.MouseEvent<HTMLOrSVGElement, MouseEvent>) => void
+  onClose: () => void
   show?: boolean
 }
 

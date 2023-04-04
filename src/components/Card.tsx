@@ -12,7 +12,7 @@ const CardWrapper = styled.div`
 
 interface CardProps {
   children: React.ReactNode
-  onClick: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
+  onClick: () => void
 }
 
 export const Card: React.FC<CardProps> = ({ children, onClick }) => {

@@ -28,7 +28,7 @@ const ButtonWrapper = styled.button`
 `
 
 interface TheButtonProps {
-  onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
+  onClick?: () => void
   children: React.ReactNode
   type?: 'button' | 'submit'
 }

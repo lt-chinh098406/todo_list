@@ -1,4 +1,4 @@
-import { columns } from '@/components/todo/Todo'
+import { InitialColumn } from '@/factory/column'
 import { SelectField } from '@/components/Select'
 import { PlusCircleIcon, MinusCircleIcon } from '@heroicons/react/24/outline'
 import { FieldArray, FastField, Form, Formik, FormikErrors } from 'formik'
@@ -7,18 +7,8 @@ import { Todo, Property } from '@/models/Todo'
 import { Input } from '@/components/Input'
 import { TextArea } from '@/components/TextArea'
 import * as Yup from 'yup'
-
-const defaultProperty: Property = {
-  value: '',
-}
-
-const initialValues: Todo = {
-  id: '',
-  title: '',
-  description: '',
-  statusId: 1,
-  properties: [defaultProperty],
-}
+import { defaultListTodo, defaultProperty } from '@/factory/todo'
+import { v4 } from 'uuid'
 
 const TodoScheme = Yup.object().shape({
   title: Yup.string().max(255).required('Title is required'),
@@ -33,7 +23,23 @@ const TodoScheme = Yup.object().shape({
     .required('Must have properties'),
 })
 
-export const TodoForm: React.FC = ({}) => {
+interface TodoFromProps {
+  value: Todo
+  status: string
+  onClose: () => void
+  addTodo?: (values: Todo) => void
+  updateTodo?: (values: Todo) => void
+  deleteTodo?: (id: string) => void
+}
+
+export const TodoForm: React.FC<TodoFromProps> = ({
+  value,
+  status,
+  onClose,
+  addTodo,
+  updateTodo,
+  deleteTodo,
+}) => {
   const addProperty = (
     event: React.MouseEvent<HTMLOrSVGElement, MouseEvent>,
     push: (defaultProperty: Property) => void
@@ -51,11 +57,33 @@ export const TodoForm: React.FC = ({}) => {
     remove(index)
   }
 
+  const handleSubmitForm = (values: Todo) => {
+    if (status === 'create') {
+      addTodo!(values)
+    } else {
+      updateTodo!(values)
+    }
+
+    onClose()
+  }
+
+  const onDeleteTodo = (id: string): void => {
+    deleteTodo!(id)
+
+    onClose()
+  }
+
   return (
     <Formik
-      initialValues={initialValues}
+      initialValues={{
+        id: value.id,
+        title: value.title,
+        description: value.description,
+        statusId: value.statusId,
+        properties: value.properties,
+      }}
       validationSchema={TodoScheme}
-      onSubmit={(values) => console.log(values)}
+      onSubmit={handleSubmitForm}
     >
       {({ values, errors, touched }) => {
         return (
@@ -85,7 +113,7 @@ export const TodoForm: React.FC = ({}) => {
             ) : null}
             <FastField
               name="statusId"
-              options={columns}
+              options={InitialColumn}
               component={SelectField}
               label="Status :"
             />
@@ -141,7 +169,18 @@ export const TodoForm: React.FC = ({}) => {
                 </div>
               )}
             </FieldArray>
-            <Button type="submit">Submit Form</Button>
+            <div className="tw-flex tw-items-center tw-justify-center tw-mt-6">
+              {status === 'create' ? (
+                <Button type="submit">Add Todo</Button>
+              ) : (
+                <>
+                  <Button type="submit">Update Todo</Button>
+                  <Button onClick={() => onDeleteTodo(values.id)}>
+                    Delete Todo
+                  </Button>
+                </>
+              )}
+            </div>
           </Form>
         )
       }}

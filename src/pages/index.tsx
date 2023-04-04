@@ -3,10 +3,7 @@ import styled from 'styled-components'
 
 import { SideBar } from '@/components/Sidebar'
 import { Header } from '@/components/Header'
-import { Todo } from '@/components/todo/Todo'
-import { useState } from 'react'
-import { LoginForm } from '@/components/login/LoginForm'
-import { AuthProvider } from '@/context/AuthProvider'
+import { TodoList } from '@/components/todo/Todo'
 
 const Container = styled.div`
   max-width: calc(100% - (var(--sidebar)));
@@ -18,10 +15,8 @@ const Container = styled.div`
 `
 
 export default function Home() {
-  const [isLogin, setIsLogin] = useState<boolean>(false)
-
   return (
-    <AuthProvider>
+    <>
       <Head>
         <title>Todo List</title>
         <meta name="description" content="Create by ChinhLT" />
@@ -32,9 +27,9 @@ export default function Home() {
         <SideBar />
         <Container>
           <Header />
-          {isLogin ? <Todo /> : <LoginForm />}
+          <TodoList />
         </Container>
       </main>
-    </AuthProvider>
+    </>
   )
 }
